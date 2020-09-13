@@ -1,0 +1,4 @@
+#include "/etc/regolith/styles/nord/root"
+
+i3-wm.bar.trayoutput:primary
+gnome.terminal.font: MesloLGS NF Regular 8
