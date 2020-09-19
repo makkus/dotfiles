@@ -1,0 +1,5 @@
+#pattern  filter=crypt diff=crypt merge=crypt
+spacemacs/.spacemacs.d/layers/markus-config/config.el  filter=crypt diff=crypt merge=crypt
+ssh/.ssh/config  filter=crypt diff=crypt merge=crypt
+mbsync/*.mb  filter=crypt diff=crypt merge=crypt
+mbsync/mbsyncrc  filter=crypt diff=crypt merge=crypt
