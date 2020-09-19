@@ -59,7 +59,7 @@ This function should only modify configuration layer settings."
           org-enable-hugo-support t
           org-enable-verb-support t
           org-directory "~/Documents/org"
-          org-projectile-file "TODO.org"
+          org-projectile-file "todo.org"
           org-default-notes-file "~/Documents/org/tasks/main.org"
           )
      ;;;;org-roam
@@ -84,12 +84,16 @@ This function should only modify configuration layer settings."
      nim
      html
      csv
-     mu4e
+     (mu4e :variables
+           mu4e-use-maildirs-extension nil
+           mu4e-mu-binary         "/usr/local/bin/mu"
+           mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu4e")
      (ranger :variables
              ranger-show-preview t
      )
      treemacs
      spacemacs-purpose
+     markus-config
      )
 
 
@@ -539,6 +543,8 @@ dump."
 
   (spacemacs/dump-modes '(org-mode org-agenda-mode python-mode markdown-mode magit-mode helm-mode shell-script-mode yaml-mode systemd-mode restclient-mode pandoc-mode ansible-doc-mode sql-mode csv-mode anzu-mode auto-composition-mode company-mode editorconfig-mode evil-mode eyebrowse-mode company-mode flycheck-mode font-lock-mode git-gutter+-mode global-undo-tree-mode highlight-numbers-mode highlight-paren-mode holy-mode line-number-mode mouse-wheel-mode persp-mode projectile-mode pupo-mode purpose-mode rainbow-delimiters-mode shell-dirtrack-mode show-smartparens-mode smartparens-mode spaceline-helm-mode undo-tree-mode which-key-mode yas-global-mode transient-mark-mode))
 
+  (require 'mu4e)
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -568,12 +574,15 @@ before packages are loaded."
   (with-eval-after-load 'org
     (key-chord-define org-mode-map ";t" 'org-todo)
     (setq org-agenda-files '("~/Documents/org/tasks/main.org"))
-    (setq org-refile-use-outline-path 'file)
+    (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+    (setq org-refile-use-outline-path 'full-file-path)
+    (setq org-outline-path-complete-in-steps nil)
+    (setq org-refile-allow-creating-parent-nodes t)
     )
 
   (with-eval-after-load 'org-agenda
     (require 'org-projectile)
-    (mapcar #'(lambda (file)
+    (mapcar '(lambda (file)
                (when (file-exists-p file)
                  (push file org-agenda-files)))
             (org-projectile-todo-files))
@@ -626,6 +635,7 @@ This function is called at the very end of Spacemacs initialization."
  '(projectile-mode t nil (projectile))
  '(pupo-mode t)
  '(purpose-mode t)
+ '(send-mail-function 'mailclient-send-it)
  '(spaceline-helm-mode t)
  '(which-key-mode t)
  '(yas-global-mode t))
@@ -634,7 +644,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil)))))
+ '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3")))))
 )
 
 
