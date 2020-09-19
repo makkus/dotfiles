@@ -27,7 +27,7 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 USER_PATH="$HOME/.local/setup/dotfiles/scripts:$HOME/.local/bin:$HOME/.local/bring:$HOME/.local/opt/emacs/bin:$HOME/.local/apps:/opt/mcfly"
 GIT_REPOS_BASE_PATH="$HOME/.local/setup/git_repos"
-GIT_REPOS_PATH="$GIT_REPOS_BASE_PATH/rofi-pass"
+GIT_REPOS_PATH="$GIT_REPOS_BASE_PATH/rofi-pass:$GIT_REPOS_BASE_PATH/transcrypt"
 
 export PATH="${USER_PATH}:${GIT_REPOS_PATH}:${PATH}"
 
