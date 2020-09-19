@@ -1,0 +1,170 @@
+#+STARTUP: content
+
+* base packages to install
+
+  curl
+  git
+  stow
+  zsh
+  ripgrep
+  htop
+  pwgen
+  libsecret-tools
+  python3-psutil
+
+
+* dev packages
+  
+  direnv
+  libssl-dev
+  meld
+
+* desktop packages
+
+  thunderbird
+  wmctrl
+  xdotool
+  feh
+  pasystray
+  blueman
+  pavucontrol
+  pavumeter
+  paprefs
+  mpv
+
+* other
+
+** emacs
+   snap install emacs --classic
+   git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+   cd .emacs.d
+   git checkout develop
+
+** desktop
+*** regolith
+    sudo add-apt-repository ppa:regolith-linux/release
+    sudo apt install regolith-desktop i3xrocks-net-traffic i3xrocks-cpu-usage i3xrocks-time
+    sudo apt install regolith-look-nord
+    sudo apt install gstreamer1.0-plugins-{bad,base,good,ugly}
+
+** development
+*** pipx
+    python3 -m pip install --user pipx
+    python3 -m pipx ensurepath
+
+** misc
+*** yubikey
+    sudo apt install -y yubikey-manager yubikey-personalization
+    sudo apt install gnupg pcscd scdaemon
+*** signal
+
+    curl -s https://updates.signal.org/desktop/apt/keys.asc | sudo apt-key add -
+    echo "deb [arch=amd64] https://updates.signal.org/desktop/apt xenial main" | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+    sudo apt update && sudo apt install -y signal-desktop
+
+*** wire
+
+    wget -q https://wire-app.wire.com/linux/releases.key -O- | sudo apt-key add -
+    echo "deb [arch=amd64] https://wire-app.wire.com/linux/debian stable main" | sudo tee /etc/apt/sources.list.d/wire-desktop.list
+    sudo apt-get update && sudo apt-get install -y wire-desktop
+*** mcfly
+
+    TODO
+
+* gnome settings
+
+** set emacs gnome keybindings 
+  
+   org.gnome.desktop.interface gtk-key-theme 'Emacs'
+
+** make Caps Lock an additional Super
+
+   org.gnome.desktop.input-sources xkb-options "['caps:super']"
+
+** disable Super-l 
+
+   org.gnome.settings-daemon.plugins.media-keys screensaver "@as []"
+
+* mail setup
+
+** store password in keyring
+   
+   secret-tool store --label="Posteo account password" type email provider posteo username whatever@posteo.de
+
+** create mbsync config for account
+
+   File content:
+
+   IMAPAccount posteo
+   Host posteo.de
+   User whatever@posteo.de
+   PassCmd "secret-tool lookup type email provider posteo username whatever@posteo.de"
+   Port 993
+   SSLTYPE IMAPS
+   #SSLVersions SSLv3
+   CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+   Imapstore posteo-remote
+   Account posteo
+
+   MaildirStore posteo-local
+   Path /mnt/space/storage/mail/posteo/
+   Inbox /mnt/space/storage/mail/posteo/INBOX
+   SubFolders Verbatim
+   Trash Trash
+   TrashNewonly yes
+
+   Channel posteo-inbox
+   Master :posteo-remote:
+   Slave :posteo-local:
+   Patterns INBOX
+   Create Both
+   Sync All
+   Expunge Both
+   SyncState *
+
+   Channel posteo-drafts
+   Master :posteo-remote:
+   Slave :posteo-local:
+   Patterns Drafts
+   Create Both
+   Sync All
+   Expunge Both
+   SyncState *
+
+   Channel posteo-folders
+   Master :posteo-remote:
+   Slave :posteo-local:
+   Patterns Lists/*
+   Create Both
+   Sync All
+   Expunge Both
+   SyncState *
+
+   Channel posteo-sent
+   Master :posteo-remote:
+   Slave :posteo-local:
+   Patterns Sent
+   Create Both
+   Sync All
+   Expunge Both
+   SyncState *
+
+   Channel posteo-trash
+   Master :posteo-remote:
+   Slave :posteo-local:
+   Patterns Trash
+   Create Both
+   Sync All
+   Expunge Both
+   SyncState *
+
+   Channel posteo-archives
+   Master :posteo-remote:
+   Slave :posteo-local:
+   Patterns Archives/2020 Archives/2018 Archives/2017 Archives/2016 Archives/2015 Archives/2015/*
+   Create Both
+   Sync All
+   Expunge Both
+   SyncState *
+
