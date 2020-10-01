@@ -75,18 +75,48 @@ zinit from"gh-r" as"program" mv"direnv* -> direnv" \
     pick"direnv" src="zhook.zsh" for \
     direnv/direnv
 
+zinit light-mode lucid wait has"kubectl" for \
+  id-as"kubectl_completion" \
+  as"completion" \
+  atclone"kubectl completion zsh > _kubectl" \
+  atpull"%atclone" \
+  run-atpull \
+  zdharma/null
+
+zstyle ":history-search-multi-word" page-size "11"
+zinit ice wait"1" lucid
+zinit load zdharma/history-search-multi-word
+
+# zinit ice wait"0c" lucid reset \
+#     atclone"local P=${${(M)OSTYPE:#*darwin*}:+g}
+#             \${P}sed -i \
+#             '/DIR/c\DIR 38;5;63;1' LS_COLORS; \
+#             \${P}dircolors -b LS_COLORS > c.zsh" \
+#     atpull'%atclone' pick"c.zsh" nocompile'!' \
+#     atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+# zinit light trapd00r/LS_COLORS
+
+# Autosuggestions & fast-syntax-highlighting
+zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay"
+zinit light zdharma/fast-syntax-highlighting
+
+# zsh-autosuggestions
+zinit ice wait lucid atload"!_zsh_autosuggest_start"
+zinit load zsh-users/zsh-autosuggestions
+
+
+
 autoload -Uz compinit
 compinit
 
 zinit cdreplay -q
 
-# ==================================================
 # mcfly
 
-if [[ -r "/opt/mcfly/mcfly.zsh" ]]; then
-    # export MCFLY_LIGHT=TRUE
-    source "/opt/mcfly/mcfly.zsh"
-fi
+# if [[ -r "/opt/mcfly/mcfly.zsh" ]]; then
+#     # export MCFLY_LIGHT=TRUE
+#     source "/opt/mcfly/mcfly.zsh"
+# fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
