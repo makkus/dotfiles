@@ -2,3 +2,4 @@
 
 i3-wm.bar.trayoutput:primary
 gnome.terminal.font: MesloLGS NF Regular 8
+i3-wm.program.notification: dunst
