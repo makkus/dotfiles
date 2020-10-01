@@ -99,3 +99,11 @@ alias fni="freckles nsbl info"
 alias fx="frecklecute"
 alias fxd="frecklecute -c dev"
 alias fcl="freckles run-info current-logs"
+
+
+# kitty
+alias d="kitty +kitten diff"
+alias icat="kitty +kitten icat"
+alias to_clipboard="kitty +kitten clipboard"
+alias from_clipboard="kitty +kitten clipboard --get-clipboard"
+
