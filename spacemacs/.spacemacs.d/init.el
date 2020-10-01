@@ -94,6 +94,7 @@ This function should only modify configuration layer settings."
      treemacs
      spacemacs-purpose
      markus-config
+     xclipboard
      )
 
 
@@ -559,6 +560,11 @@ before packages are loaded."
 
   ;;;; helm
   (setq history-delete-duplicates t)
+
+  ;;;; set default text direction (from: https://200ok.ch/posts/2020-09-29_comprehensive_guide_on_handling_long_lines_in_emacs.html)
+  (setq bidi-paragraph-direction 'left-to-right)
+  (if (version<= "27.1" emacs-version)
+    (setq bidi-inhibit-bpa t))
 
   ;;;; key-chords
   (key-chord-define-global "jk" 'avy-goto-word-or-subword-1)
