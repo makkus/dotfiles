@@ -31,6 +31,8 @@
   pavumeter
   paprefs
   mpv
+  dunst
+  kitty
 
 * other
 
