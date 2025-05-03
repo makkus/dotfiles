@@ -1,1 +1,27 @@
-# output * bg /home/markus/.config/hypr/assets/beach.jpg fill
+# Background color (Nord Light theme)
+output * bg #eceff4 solid_color
+
+# Gaps between windows
+gaps inner 6
+gaps outer 0
+
+# Borders
+default_border pixel 2
+default_floating_border pixel 2
+smart_borders on
+
+# Colors (Nord Light theme)
+# class                 border  backgr. text    indicator child_border
+client.focused          #81a1c1 #eceff4 #434c5e #81a1c1   #81a1c1
+client.focused_inactive #d8dee9 #eceff4 #4c566a #d8dee9   #d8dee9
+client.unfocused        #d8dee9 #eceff4 #4c566a #d8dee9   #d8dee9
+client.urgent           #bf616a #eceff4 #bf616a #bf616a   #bf616a
+client.placeholder      #e5e9f0 #eceff4 #434c5e #e5e9f0   #e5e9f0
+client.background       #eceff4
+
+# Font
+font pango:Inter 10
+
+# Opacity
+set $opacity 0.95
+for_window [app_id="ghostty"] opacity $opacity

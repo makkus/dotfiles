@@ -44,14 +44,18 @@
     min-height: 0;
     margin: 0;
     padding: 0;
+    font-family: "Inter", "Fira Sans", "Font Awesome 6 Free", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 /* The whole bar */
 #waybar {
-    background: #323232;
-    color: white;
-    font-family: Cantarell, Noto Sans, sans-serif;
-    font-size: 13px;
+    background: transparent;
+    color: #2e3440;
+    border-radius: 0;
+    transition-property: background-color;
+    transition-duration: 0.5s;
 }
 
 /* Each module */
@@ -60,13 +64,26 @@
 #cpu,
 #custom-keyboard-layout,
 #memory,
+#disk,
 #mode,
 #network,
 #pulseaudio,
+#wireplumber,
 #temperature,
+#idle_inhibitor,
 #tray {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0 10px;
+    margin: 3px 0px;
+    background: rgba(236, 239, 244, 0.85);
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+#workspaces {
+    background: rgba(236, 239, 244, 0.85);
+    border-radius: 10px;
+    margin: 3px;
+    margin-left: 5px;
 }
 
 
@@ -100,6 +117,7 @@
 
 #clock {
     font-weight: bold;
+    color: #2e3440;
 }
 
 #cpu {
@@ -131,70 +149,121 @@
 }
 
 #mode {
-    background: #64727D;
-    border-top: 2px solid white;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
+    background: #81a1c1;
+    color: #eceff4;
+    border-radius: 10px;
+    margin: 3px 0;
+    padding: 0 10px;
 }
 
 #network {
     /* No styles */
 }
 
+#network {
+    color: #3b4252;
+}
+
 #network.disconnected {
-    color: orange;
+    color: #bf616a;
 }
 
-#pulseaudio {
-    /* No styles */
+#pulseaudio, #wireplumber {
+    color: #3b4252;
 }
 
-#pulseaudio.muted {
-    /* No styles */
+#pulseaudio.muted, #wireplumber.muted {
+    color: #4c566a;
 }
 
 #custom-spotify {
-    color: rgb(102, 220, 105);
+    color: #a3be8c;
+}
+
+#idle_inhibitor {
+    color: #bf616a;  /* Red for deactivated (X) */
+}
+
+#idle_inhibitor.activated {
+    color: #a3be8c;  /* Green for activated (checkmark) */
 }
 
 #temperature {
-    /* No styles */
+    color: #d08770;
 }
 
 #temperature.critical {
-    color: red;
+    color: #bf616a;
 }
 
 #tray {
-    /* No styles */
+    background: rgba(236, 239, 244, 0.85);
 }
 
 #window {
     font-weight: bold;
+    color: #434c5e;
 }
 
 #workspaces button {
-    border-top: 2px solid transparent;
-    /* To compensate for the top border and still have vertical centering */
-    padding-bottom: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    color: #888888;
+    padding: 0 5px;
+    color: #3b4252;
+    border-radius: 10px;
+    margin: 3px 2px;
+    transition: all 0.3s ease-in-out;
 }
 
-#workspaces button.active {
-    border-color: #4c7899;
-    color: white;
-    background-color: #285577;
+#workspaces button:hover {
+    background: rgba(216, 222, 233, 0.4);
+    color: #2e3440;
+    box-shadow: inherit;
 }
 
-#workspaces button.focused {
-    border-color: #4c7899;
-    color: white;
-    background-color: #285577;
+#workspaces button.active, #workspaces button.focused {
+    color: #eceff4;
+    background-color: #5e81ac;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
 #workspaces button.urgent {
-    border-color: #c9545d;
-    color: #c9545d;
+    background-color: #bf616a;
+    color: #eceff4;
+}
+
+#battery {
+    color: #2e3440;
+    background-color: #a3be8c;
+}
+
+#battery.warning {
+    color: #2e3440;
+    background-color: #ebcb8b;
+}
+
+#battery.critical {
+    color: #eceff4;
+    background-color: #bf616a;
+}
+
+#battery.charging {
+    color: #2e3440;
+    background-color: #88c0d0;
+    animation-name: none;
+}
+
+#cpu {
+    color: #2e3440;
+}
+
+#memory {
+    color: #2e3440;
+}
+
+#disk {
+    color: #2e3440;
+}
+
+#custom-keyboard-layout {
+    color: #2e3440;
 }

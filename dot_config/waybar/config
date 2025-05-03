@@ -16,7 +16,7 @@
     "position": "top",
 
     // If height property would be not present, it'd be calculated dynamically
-    "height": 30,
+    "height": 26,
     "spacing": 10,
 
     "modules-left": [
@@ -44,13 +44,13 @@
     // -------------------------------------------------------------------------
 
     "battery": {
-        "interval": 10,
+        "interval": 4,
         "states": {
             "warning": 30,
             "critical": 15
         },
         // Connected to AC
-        "format": "  {icon}  {capacity}%", // Icon: bolt
+        "format": "⚡ {icon}  {capacity}%", // Icon: lightning bolt + battery
         // Not connected to AC
         "format-discharging": "{icon}  {capacity}%",
         "format-icons": [
@@ -60,7 +60,10 @@
             "", // Icon: battery-quarter
             ""  // Icon: battery-empty
         ],
-        "tooltip": true
+        "tooltip": true,
+        "class": {
+            "charging": "charging"
+        }
     },
 
     "clock#time": {
@@ -168,8 +171,8 @@
     "idle_inhibitor": {
       "format": "   idle_inhibit: {icon}",
       "format-icons": {
-          "activated": "⦿",
-          "deactivated": "⮾"
+          "activated": "✓",
+          "deactivated": "✗"
       }
     },
 

@@ -16,7 +16,7 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term gnome-terminal
+set $term ghostty
 
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 

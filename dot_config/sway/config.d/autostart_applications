@@ -20,4 +20,9 @@ exec firefox
 exec thunderbird
 exec pycharm
 
+# Notification daemon with nice styling
 exec dunst
+
+
+# Start clipboard manager with a nice UI
+exec wl-paste -t text --watch clipman store

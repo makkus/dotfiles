@@ -37,7 +37,7 @@ SETUVAR fish_pager_color_secondary_completion:\x1d
 SETUVAR fish_pager_color_secondary_description:\x1d
 SETUVAR fish_pager_color_secondary_prefix:\x1d
 SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dbrblack
-SETUVAR fish_pager_color_selected_completion:\x1d
-SETUVAR fish_pager_color_selected_description:\x1d
-SETUVAR fish_pager_color_selected_prefix:\x1d
+SETUVAR fish_pager_color_selected_completion:brwhite
+SETUVAR fish_pager_color_selected_description:brwhite
+SETUVAR fish_pager_color_selected_prefix:brwhite\x1e\x2d\x2dbold
 SETUVAR fish_user_paths:/home/markus/bin\x1e/home/markus/\x2elocal/bin\x1e/home/markus/\x2epixi/bin
