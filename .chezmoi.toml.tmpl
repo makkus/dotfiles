@@ -1,0 +1,3 @@
+{{- $dev_tools := promptBoolOnce . "dev_tools" "Install dev tools? (true/false)" -}}
+[data]
+  dev_tools = {{ $dev_tools }}

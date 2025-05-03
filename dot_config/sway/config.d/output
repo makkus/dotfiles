@@ -1,0 +1,10 @@
+### Output configuration
+
+#set $output_1 DP-4
+#set $output_2 eDP-1
+#set $output_2 eDP-1
+#set $output_1 DP-2
+
+include $HOME/.config/sway/outputs
+include $HOME/.config/sway/workspaces
+

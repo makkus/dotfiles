@@ -1,0 +1,7 @@
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+    if has_command
+      atuin init fish | source
+    end
+end
+fish_add_path /home/markus/.pixi/bin

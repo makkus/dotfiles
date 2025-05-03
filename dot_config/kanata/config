@@ -1,0 +1,108 @@
+(defcfg
+  #|
+  This configuration will process all keys pressed inside of kanata, even if
+  they are not mapped in defsrc. This is so that certain actions can activate
+  at the right time for certain input sequences. By default, unmapped keys are
+  not processed through kanata due to a Windows issue related to AltGr. If you
+  use AltGr in your keyboard, you will likely want to follow the simple.kbd
+  file while unmapping lctl and ralt from defsrc.
+  |#
+  process-unmapped-keys yes
+  danger-enable-cmd yes
+  log-layer-changes yes
+)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt prtsc rctl pgup pgdn
+)
+
+(deflayer default
+  @grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    @euro_tap    r    t    y    @ue_fork    i    @oe_fork    p    [    ]    \
+  lmet @ae_fork    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl @lmet lalt           spc            ralt @prtsc rctl @pgup pgdn
+)
+
+(deflayer control
+  @grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    @euro_tap    lrld    t    y    @ue_fork    i    @oe_fork    p    [    ]    \
+  @cap @ae_fork    s    d    f    g    h    left    down    up    rght    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt prtsc rctl  pgup pgdn
+)
+
+(deflayer arrows
+  @grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    up    o    p    [    ]    \
+  @cap a    s    d    f    g    h    left   down    up    rght '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl @lmet lalt           spc            ralt rmet rctl pgup pgdn
+)
+
+(defalias
+  cap (tap-hold-press 200 200 esc lmet)
+  grv (tap-hold-press 200 200 grv (layer-while-held arrows))
+  lmet (tap-hold-press 200 200 lmet (layer-while-held control))
+  pgup (tap-hold-press 200 200 lmet (layer-while-held control))
+  prtsc (tap-hold-press 200 200 lmet (layer-while-held control))
+  lsftesc (tap-hold-release 200 200 esc lsft)
+
+  Ae (unicode Ä)
+  Ue (unicode Ü)
+  Oe (unicode Ö)
+  ae (unicode ä)
+  ue (unicode ü)
+  oe (unicode ö)
+  ss (unicode ß)
+  euro (unicode €)
+
+  ae_tap (tap-dance-eager 200 (
+    (macro a)
+    (macro a)
+    (macro bspc bspc @ae)
+  ))
+  Ae_tap (tap-dance-eager 200 (
+    (macro S-a)
+    (macro S-a)
+    (macro bspc bspc @Ae)
+  ))
+  oe_tap (tap-dance-eager 200 (
+    (macro o)
+    (macro o)
+    (macro bspc bspc @oe)
+  ))
+  Oe_tap (tap-dance-eager 200 (
+    (macro S-o)
+    (macro S-o)
+    (macro bspc bspc @Oe)
+  ))
+  ue_tap (tap-dance-eager 200 (
+    (macro u)
+    (macro u)
+    (macro bspc bspc @ue)
+  ))
+  Ue_tap (tap-dance-eager 200 (
+    (macro S-u)
+    (macro S-u)
+    (macro bspc bspc @Ue)
+  ))
+  ss_tap (tap-dance-eager 200 (
+    (macro s)
+    (macro s)
+    (macro bspc bspc @ss)
+  ))
+  euro_tap (tap-dance-eager 200 (
+    (macro e)
+    (macro e)
+    (macro bspc bspc @euro)
+  ))
+
+  ae_fork (fork @ae_tap @Ae_tap (lsft rsft))
+  oe_fork (fork @oe_tap @Oe_tap (lsft rsft))
+  ue_fork (fork @ue_tap @Ue_tap (lsft rsft))
+)

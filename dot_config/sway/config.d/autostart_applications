@@ -1,0 +1,23 @@
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+#exec /usr/libexec/polkit-gnome-authentication-agent-1
+exec /usr/bin/lxpolkit
+
+exec swayidle -w
+
+exec nm-applet --indicator
+exec blueman-applet
+
+exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+
+exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=signal-desktop --file-forwarding org.signal.Signal
+exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=discord com.discordapp.Discord
+exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=slack --file-forwarding com.slack.Slack
+
+exec firefox
+exec thunderbird
+exec pycharm
+
+exec dunst

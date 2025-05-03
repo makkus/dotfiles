@@ -1,0 +1,31 @@
+version = 1
+
+[envs.eza]
+channels = ["conda-forge"]
+dependencies = { eza = "*" }
+exposed = { eza = "eza" }
+
+[envs.bat]
+channels = ["conda-forge"]
+dependencies = { bat = "*" }
+exposed = { bat = "bat" }
+
+[envs.ripgrep]
+channels = ["conda-forge"]
+dependencies = { ripgrep = "*" }
+exposed = { rg = "rg" }
+
+[envs.htop]
+channels = ["conda-forge"]
+dependencies = { htop = "*" }
+exposed = { htop = "htop" }
+
+[envs.just]
+channels = ["conda-forge"]
+dependencies = { just = "*" }
+exposed = { just = "just" }
+
+[envs.direnv]
+channels = ["conda-forge"]
+dependencies = { direnv = "*" }
+exposed = { direnv = "direnv" }

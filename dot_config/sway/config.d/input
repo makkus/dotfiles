@@ -1,0 +1,12 @@
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0
+    scroll_factor 1
+}
+
+input type:touchpad {
+  dwt enabled
+  dwtp enabled
+  tap enabled
+  tap_button_map lrm
+}
