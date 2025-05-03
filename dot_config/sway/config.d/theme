@@ -1,5 +1,7 @@
 # Background color (Nord Light theme)
-output * bg #eceff4 solid_color
+# output * bg #eceff4 solid_color
+output * bg /home/markus/Pictures/Backgrounds/beach.jpg fill
+
 
 # Gaps between windows
 gaps inner 6

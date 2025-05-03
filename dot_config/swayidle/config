@@ -1,0 +1,3 @@
+timeout 600 'swaylock -C ~/.config/swaylock/config'
+timeout 800 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+before-sleep 'swaylock -C ~/.config/swaylock/config'
