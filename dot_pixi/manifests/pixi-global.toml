@@ -44,3 +44,8 @@ exposed = { fzf = "fzf" }
 channels = ["conda-forge"]
 dependencies = { btop = "*" }
 exposed = { btop = "btop" }
+
+[envs.atuin]
+channels = ["conda-forge"]
+dependencies = { atuin = "*" }
+exposed = { atuin = "atuin" }
