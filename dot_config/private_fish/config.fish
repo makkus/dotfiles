@@ -3,5 +3,10 @@ if status is-interactive
     if has_command atuin
       atuin init fish | source
     end
+    if has_command zoxide
+      zoxide init fish | source
+    end
 end
 fish_add_path /home/markus/.pixi/bin
+fish_add_path /home/markus/.local/scripts
+

@@ -81,7 +81,7 @@ alias grep='grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 
 ## apps
 if has_command htop
-    alias top='htop'
+    alias htop='TERM=xterm-256color command htop'
 end
 
 if has_command chezmoi

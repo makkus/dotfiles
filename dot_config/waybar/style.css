@@ -71,7 +71,8 @@
 #wireplumber,
 #temperature,
 #idle_inhibitor,
-#tray {
+#tray,
+#custom-powerprofile {
     padding: 0 10px;
     margin: 3px 0px;
     background: rgba(236, 239, 244, 0.85);
@@ -118,6 +119,7 @@
 #clock {
     font-weight: bold;
     color: #2e3440;
+    min-width: 140px;
 }
 
 #cpu {
@@ -254,16 +256,20 @@
 
 #cpu {
     color: #2e3440;
+    min-width: 100px;
 }
 
 #memory {
     color: #2e3440;
+    min-width: 80px;
 }
 
 #disk {
     color: #2e3440;
+    min-width: 170px;
 }
 
 #custom-keyboard-layout {
     color: #2e3440;
 }
+

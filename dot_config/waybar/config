@@ -20,27 +20,28 @@
     "spacing": 10,
 
     "modules-left": [
+        "idle_inhibitor",
         "sway/workspaces",
     ],
     "modules-center": [
-        "idle_inhibitor",
-        "wireplumber"
-    ],
-    "modules-right": [
-        "network",
-        "memory",
         "disk",
+        "memory",
         "cpu",
         "temperature",
-        "custom/keyboard-layout",
-        "battery",
-        "tray",
-        "clock#date",
         "clock#time"
+    ],
+    "modules-right": [
+        // "network",
+        // "custom/keyboard-layout",
+        "battery",
+        "custom/powerprofile",
+        "wireplumber",
+        "tray",
     ],
 
     // -------------------------------------------------------------------------
     // Modules
+
     // -------------------------------------------------------------------------
 
     "battery": {
@@ -54,11 +55,11 @@
         // Not connected to AC
         "format-discharging": "{icon}  {capacity}%",
         "format-icons": [
-            "", // Icon: battery-full
-            "", // Icon: battery-three-quarters
-            "", // Icon: battery-half
-            "", // Icon: battery-quarter
-            ""  // Icon: battery-empty
+            "", // Icon: battery-full (Font Awesome)
+            "", // Icon: battery-three-quarters (Font Awesome)
+            "", // Icon: battery-half (Font Awesome)
+            "", // Icon: battery-quarter (Font Awesome)
+            ""  // Icon: battery-empty (Font Awesome)
         ],
         "tooltip": true,
         "class": {
@@ -66,40 +67,32 @@
         }
     },
 
+    "custom/powerprofile": {
+        "exec": "~/.config/waybar/powerprofile_status.sh",
+        "interval": 10,
+        "tooltip": "Current power profile",
+        "on-click": "~/.local/scripts/powerprofile_fuzzel.sh",
+    },
+
     "clock#time": {
         "interval": 1,
-        "format": "   {:%H:%M:%S}",
+        "format": "{:%Y-%m-%d %H:%M:%S}",
         "tooltip": false
     },
 
-    "clock#date": {
-      "interval": 10,
-      "format": "  {:%e %b %Y}", // Icon: calendar-alt
-      "tooltip-format": "{:%e %B %Y}"
-    },
 
     "cpu": {
         "interval": 5,
-        "format": "   cpu:  {usage}% ({load})", // Icon: microchip
+        "format": "cpu:  {usage}% ({load})", // Icon: microchip
         "states": {
           "warning": 70,
           "critical": 90
         }
     },
 
-    "custom/keyboard-layout": {
-      "exec": "swaymsg -t get_inputs -r | jq '.[] | select(.identifier==\"1452:591:Keychron_K3\" or .identifier==\"1452:491:Keychron_Keychron_K3\") | .xkb_active_layout_name' | grep -v null | head -1",
-      // Interval set only as a fallback, as the value is updated by signal
-      "interval": 30,
-      "format": "   K3: {}", // Icon: keyboard
-      // Signal sent by Sway key binding (~/.config/sway/key-bindings)
-      "signal": 1, // SIGHUP
-      "tooltip": false
-    },
-
     "memory": {
         "interval": 5,
-        "format": "   mem: {}%", // Icon: memory
+        "format": "mem: {}%", // Icon: memory
         "states": {
             "warning": 70,
             "critical": 90
@@ -138,38 +131,22 @@
         }
     },
 
-    //"pulseaudio": {
-    //    //"scroll-step": 1,
-    //    "format": "{icon}  {volume}%",
-    //    "format-bluetooth": "{icon}  {volume}%",
-    //    "format-muted": "",
-    //    "format-icons": {
-    //        "headphones": "",
-    //        "handsfree": "",
-    //        "headset": "",
-    //        "phone": "",
-    //        "portable": "",
-    //        "car": "",
-    //        "default": ["", ""]
-    //    },
-    //    "on-click": "pavucontrol"
-    //},
-
     "temperature": {
       "critical-threshold": 80,
       "interval": 5,
-      "format": "   {icon}  {temperatureC}C",
+      "format": "{icon}  {temperatureC}C",
       "format-icons": [
-          "", // Icon: temperature-empty
-          "", // Icon: temperature-quarter
-          "", // Icon: temperature-half
-          "", // Icon: temperature-three-quarters
-          ""  // Icon: temperature-full
+          "", // Icon: temperature-empty (Font Awesome)
+          "", // Icon: temperature-quarter (Font Awesome)
+          "", // Icon: temperature-half (Font Awesome)
+          "", // Icon: temperature-three-quarters (Font Awesome)
+          ""  // Icon: temperature-full (Font Awesome)
       ],
       "tooltip": true
     },
+
     "idle_inhibitor": {
-      "format": "   idle_inhibit: {icon}",
+      "format": "{icon}",
       "format-icons": {
           "activated": "✓",
           "deactivated": "✗"
@@ -179,7 +156,7 @@
     "wireplumber": {
         "format": "{volume}% {icon}",
         "format-muted": "",
-        "on-click": "helvum",
+        "on-click": "pavucontrol",
         "format-icons": ["", "", ""]
     },
 

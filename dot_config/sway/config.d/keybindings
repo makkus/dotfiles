@@ -12,6 +12,10 @@ bindsym $mod+q kill
 # Start your launcher
 bindsym $mod+d exec $menu
 
+# Start power profile selector
+bindsym $mod+p exec ~/.local/scripts/powerprofile_fuzzel.sh
+
+
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
 # Despite the name, also works for non-floating windows.
@@ -171,8 +175,8 @@ bindsym XF86AudioMute exec amixer sset Master toggle | sed -En '/\[on\]/ s/.*\[(
 
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
 
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
