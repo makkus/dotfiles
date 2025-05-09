@@ -12,7 +12,7 @@ packages = [
     "fish",
     "emacs",
     "zile",
-    "npx"
+    "npm"
 ]
 
 apt.key(
