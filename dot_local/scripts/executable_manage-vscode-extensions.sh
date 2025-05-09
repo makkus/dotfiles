@@ -6,7 +6,7 @@ case "$1" in
     code --list-extensions > $HOME/.config/Code/.vscode-extensions
     ;;
   import)
-    if [ -f $HOME/.vscode-extensions ]; then
+    if [ -f $HOME/.config/Code/.vscode-extensions ]; then
       cat $HOME/.config/Code/.vscode-extensions | xargs -L 1 code --install-extension
     fi
     ;;
