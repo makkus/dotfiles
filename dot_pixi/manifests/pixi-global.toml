@@ -49,3 +49,12 @@ exposed = { btop = "btop" }
 channels = ["conda-forge"]
 dependencies = { atuin = "*" }
 exposed = { atuin = "atuin" }
+
+[envs.delta]
+channels = ["conda-forge"]
+dependencies = { delta = "*" }
+
+[envs.git]
+channels = ["conda-forge"]
+dependencies = { git = "*" }
+exposed = { git = "git", git-cvsserver = "git-cvsserver", git-receive-pack = "git-receive-pack", git-shell = "git-shell", git-upload-archive = "git-upload-archive", git-upload-pack = "git-upload-pack", gitk = "gitk", scalar = "scalar" }
