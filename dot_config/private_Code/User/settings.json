@@ -1,0 +1,18 @@
+{
+    "workbench.colorTheme": "Default Light Modern",
+    "editor.fontSize": 9,
+    "workbench.editor.enablePreview": false,
+    "terminal.integrated.fontSize": 9,
+    "scm.inputFontSize": 9,
+    "chat.editor.fontSize": 9,
+    "markdown.preview.fontSize": 9,
+    "roo-cline.allowedCommands": [
+        "npm test",
+        "npm install",
+        "tsc",
+        "git log",
+        "git diff",
+        "git show"
+    ],
+    "git.ignoreMissingGitWarning": true
+}
