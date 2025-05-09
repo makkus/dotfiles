@@ -1,5 +1,12 @@
 from pyinfra.operations import git, apt, files, server
 
+server.user(
+    name="Ensure user markus exists with fish shell",
+    user="markus",
+    shell="/usr/bin/fish",
+    ensure_home=True,
+    _sudo=True,
+)
 
 packages = [
     "fish",
@@ -10,6 +17,14 @@ packages = [
 apt.key(
     name="Add Microsoft GPG key",
     src="https://packages.microsoft.com/keys/microsoft.asc",
+    _sudo=True,
+)
+
+
+apt.repo(
+    name="Add VS Code repository",
+    src="deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main",
+    filename="vscode",
     _sudo=True,
 )
 
@@ -24,24 +39,9 @@ apt.packages(
     _sudo=True,
 )
 
-apt.repo(
-    name="Add VS Code repository",
-    src="deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main",
-    filename="vscode",
-    _sudo=True,
-)
-
 apt.packages(
     name="Install Visual Studio Code",
     packages=["code"],
-    _sudo=True,
-)
-
-server.user(
-    name="Ensure user markus exists with fish shell",
-    user="markus",
-    shell="/usr/bin/fish",
-    ensure_home=True,
     _sudo=True,
 )
 
@@ -50,3 +50,8 @@ server.shell(
     commands=["distrobox-export --app code"],
 )
 
+server.shell(
+    name="Import VS Code extensions",
+    commands=["~/.local/scripts/manage-vscode-extensions.sh import"],
+    user="markus"
+)
