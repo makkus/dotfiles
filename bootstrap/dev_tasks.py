@@ -11,7 +11,8 @@ server.user(
 packages = [
     "fish",
     "emacs",
-    "zile"
+    "zile",
+    "npx"
 ]
 
 apt.key(
