@@ -49,9 +49,3 @@ server.shell(
     name="Export VS Code from distrobox container",
     commands=["distrobox-export --app code"],
 )
-
-server.shell(
-    name="Import VS Code extensions",
-    commands=["~/.local/scripts/manage-vscode-extensions.sh import"],
-    user="markus"
-)
