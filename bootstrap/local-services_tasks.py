@@ -1,7 +1,7 @@
 from pyinfra.operations import git, apt, files, server
 from os import path
 
-THIS_DIR = path.abs(path.dirname(__file__))
+THIS_DIR = path.abspath(path.dirname(__file__))
 
 server.user(
     name="Ensure user markus exists with fish shell",
