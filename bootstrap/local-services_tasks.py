@@ -37,7 +37,7 @@ server.shell(
 )
 
 # Create Syncthing service file
-files.content(
+files.file(
     name="Create Syncthing systemd user service file",
     path="/home/markus/.config/systemd/user/syncthing.service",
     content="""[Unit]
