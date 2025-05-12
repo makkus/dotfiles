@@ -24,3 +24,19 @@ apt.packages(
     packages=packages,
     _sudo=True,
 )
+
+# Set higher inotify watches limit for file monitoring tools like Syncthing
+files.line(
+    name="Set inotify max_user_watches limit",
+    path="/etc/sysctl.conf",
+    line="fs.inotify.max_user_watches=204800",
+    replace=True,
+    _sudo=True,
+)
+
+# Apply the sysctl changes
+server.shell(
+    name="Apply sysctl changes",
+    commands=["sysctl -p"],
+    _sudo=True,
+)
