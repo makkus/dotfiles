@@ -44,7 +44,6 @@ files.put(
     src=path.join(THIS_DIR, "files", "syncthing.service"),
     dest="/home/markus/.config/systemd/user/syncthing.service",
     create_remote_dir=True,
-    add_deploy_dir=True,
     user="markus",
     group="markus",
     mode="644",
