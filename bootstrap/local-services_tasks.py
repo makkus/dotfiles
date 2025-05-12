@@ -25,6 +25,66 @@ apt.packages(
     _sudo=True,
 )
 
+# Set up Syncthing systemd user service for markus
+# Create systemd user directory if it doesn't exist
+server.shell(
+    name="Create systemd user directory for markus",
+    commands=[
+        "mkdir -p /home/markus/.config/systemd/user",
+    ],
+    _sudo=True,
+    _sudo_user="markus",
+)
+
+# Create Syncthing service file
+files.put(
+    name="Create Syncthing systemd user service file",
+    src_string="""[Unit]
+Description=Syncthing - Open Source Continuous File Synchronization
+Documentation=man:syncthing(1)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/syncthing -no-browser -no-restart -logflags=0
+Restart=on-failure
+SuccessExitStatus=3 4
+RestartForceExitStatus=3 4
+
+# Hardening
+ProtectSystem=full
+PrivateTmp=true
+SystemCallArchitectures=native
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
+""",
+    dest="/home/markus/.config/systemd/user/syncthing.service",
+    user="markus",
+    group="markus",
+    mode="644",
+    _sudo=True,
+)
+
+# Enable and start the service for user markus
+server.shell(
+    name="Enable and start Syncthing service for user markus",
+    commands=[
+        "systemctl --user enable syncthing.service",
+        "systemctl --user start syncthing.service",
+    ],
+    _sudo=True,
+    _sudo_user="markus",
+)
+
+# Enable lingering for user markus to allow the service to run without user login
+server.shell(
+    name="Enable lingering for user markus",
+    commands=["loginctl enable-linger markus"],
+    _sudo=True,
+)
+
 # Set higher inotify watches limit for file monitoring tools like Syncthing
 files.line(
     name="Set inotify max_user_watches limit",
