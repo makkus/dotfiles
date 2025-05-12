@@ -1,4 +1,7 @@
 from pyinfra.operations import git, apt, files, server
+from pathlib import path
+
+THIS_DIR = path.abs(path.dirname(__file__))
 
 server.user(
     name="Ensure user markus exists with fish shell",
@@ -38,7 +41,7 @@ server.shell(
 
 # Create Syncthing service file
 files.put(
-    src="files/syncthing.service",
+    src=path.join(THIS_DIR, "files", "syncthing.service"),
     dest="/home/markus/.config/systemd/user/syncthing.service",
     create_remote_dir=True,
     add_deploy_dir=True,
