@@ -15,6 +15,11 @@ system_packages= [
     "distrobox"
 ]
 
+dev_packages = [
+    "sqlite3",
+    "gcc-c++"
+]
+
 desktop_packages = [
     "browserpass",
     "browserpass-firefox",
@@ -49,6 +54,9 @@ if host.data.get("install_system_packages", True):
 if host.data.get("install_desktop_packages", True):
     packages += desktop_packages
 
+
+if host.data.get("install_dev_packages", True):
+    packages += dev_packages
 
 if packages:
     apt.packages(
