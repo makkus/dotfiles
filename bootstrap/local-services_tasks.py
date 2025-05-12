@@ -1,5 +1,5 @@
 from pyinfra.operations import git, apt, files, server
-from pathlib import path
+from os import path
 
 THIS_DIR = path.abs(path.dirname(__file__))
 
