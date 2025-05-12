@@ -65,16 +65,16 @@ files.put(
     _sudo=True,
 )
 
-# Enable and start the service for user markus
-server.shell(
-    name="Enable and start Syncthing service for user markus",
-    commands=[
-        "systemctl --user enable syncthing.service",
-        "systemctl --user start syncthing.service",
-    ],
-    _sudo=True,
-    _sudo_user="markus",
-)
+# # Enable and start the service for user markus
+# server.shell(
+#     name="Enable and start Syncthing service for user markus",
+#     commands=[
+#         "systemctl --user enable syncthing.service",
+#         "systemctl --user start syncthing.service",
+#     ],
+#     _sudo=True,
+#     _sudo_user="markus",
+# )
 
 # Enable lingering for user markus to allow the service to run without user login
 server.shell(
