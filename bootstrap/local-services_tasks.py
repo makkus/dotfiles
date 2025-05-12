@@ -32,7 +32,7 @@ apt.packages(
 files.line(
     name="Set soft ulimit to 8192 for user markus",
     path="/etc/security/limits.conf",
-    line="markus soft nofile 8192",
+    line="* soft nofile 8192",
     replace=True,
     _sudo=True,
 )
@@ -40,7 +40,7 @@ files.line(
 files.line(
     name="Set hard ulimit to 16384 for user markus",
     path="/etc/security/limits.conf",
-    line="markus hard nofile 16384",
+    line="* hard nofile 16384",
     replace=True,
     _sudo=True,
 )
