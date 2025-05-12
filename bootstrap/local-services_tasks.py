@@ -37,9 +37,10 @@ server.shell(
 )
 
 # Create Syncthing service file
-files.put(
+files.content(
     name="Create Syncthing systemd user service file",
-    src_string="""[Unit]
+    path="/home/markus/.config/systemd/user/syncthing.service",
+    content="""[Unit]
 Description=Syncthing - Open Source Continuous File Synchronization
 Documentation=man:syncthing(1)
 After=network.target
@@ -60,7 +61,6 @@ NoNewPrivileges=true
 [Install]
 WantedBy=default.target
 """,
-    dest="/home/markus/.config/systemd/user/syncthing.service",
     user="markus",
     group="markus",
     mode="644",
