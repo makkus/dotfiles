@@ -41,6 +41,7 @@ desktop_packages = [
     "pavucontrol",
     "powerprofilesctl",
     "seahorse",
+    "qutebrowser"
 ]
 
 packages = []

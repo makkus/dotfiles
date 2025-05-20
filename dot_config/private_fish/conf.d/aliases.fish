@@ -35,6 +35,11 @@ if has_command eza
   alias treel3='eza --tree -L3|less -R'
 end
 
+if has_command distrobox
+  alias db='distrobox'
+  alias dbe='distrobox enter'
+end
+
 ## pass
 if has_command pass
   alias old-pass="PASSWORD_STORE_DIR=~/.pass/old command pass"

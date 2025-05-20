@@ -59,3 +59,8 @@ exposed = { git = "git", git-cvsserver = "git-cvsserver", git-receive-pack = "gi
 channels = ["conda-forge"]
 dependencies = { git-delta = "*" }
 exposed = { delta = "delta" }
+
+[envs.git-lfs]
+channels = ["conda-forge"]
+dependencies = { git-lfs = "*" }
+exposed = { git-lfs = "git-lfs" }
